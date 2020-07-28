@@ -14,7 +14,7 @@
 
 #include <cstdlib>
 #include <stdio.h>
-#include "bcm2837.h"
+#include "bcm2835.h"
 
 
 int main(int argc, char** argv) 
@@ -22,29 +22,29 @@ int main(int argc, char** argv)
 	char ADCbuffer[2];
 	unsigned int ADCReading = 0;
 	
-	if (!bcm2837_init())
+	if (!bcm2835_init())
 	{
-		printf("BCM2837 Not initializied\n");
+		printf("BCM2835 Not initializied\n");
 	}
 	
-	bcm2837_spi_begin();
+	bcm2835_spi_begin();
 	
-    bcm2837_spi_setBitOrder(BCM2837_SPI_BIT_ORDER_MSBFIRST);	// The default
-    bcm2837_spi_setDataMode(BCM2837_SPI_MODE0);					// The default
-    bcm2837_spi_setClockDivider(BCM2837_SPI_CLOCK_DIVIDER_256);	// 1 MHz
-    bcm2837_spi_chipSelect(BCM2837_SPI_CS0);					// The default
-    bcm2837_spi_setChipSelectPolarity(BCM2837_SPI_CS0, HIGH);	// the default
+    bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);	// The default
+    bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);					// The default
+    bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);	// 1 MHz
+    bcm2835_spi_chipSelect(BCM2835_SPI_CS0);					// The default
+    bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, HIGH);	// the default
 	
 	while(1)
 	{
-		bcm2837_spi_setChipSelectPolarity(BCM2837_SPI_CS0, LOW);
-		bcm2837_delay(2);
-		bcm2837_spi_transfern(ADCbuffer, 2);		
+		bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);
+		bcm2835_delay(2);
+		bcm2835_spi_transfern(ADCbuffer, 2);		
 		ADCReading = ADCbuffer[0];
 		ADCReading = ADCReading << 8;
 		ADCReading = ADCReading | ADCbuffer[1];
 		printf("ADC reading is: %d\n", ADCReading);
-		bcm2837_spi_setChipSelectPolarity(BCM2837_SPI_CS0, HIGH);
+		bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, HIGH);
 	}
 	return 0;
 }
