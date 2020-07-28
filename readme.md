@@ -2,8 +2,6 @@ MCP3301 Analog-to-Digital Converter for Raspberry Pi 3:
 -------------------------------------------------------
 This is an example code to interface MCP3301 ADC to Raspberry Pi 2/3 SPI port using bcm2835 GPIO library from AirSpayce (http://www.airspayce.com/mikem/bcm2835/index.html).
 
-The bcm2837 GPIO library used in this example is a simple modification of the original one mentioned previously to fit the new Raspberry Pi 3 boards.
-
 About MCP3301:
 --------------
 MCP3301 is a 13-bit, 100 KSps Analog-to-Digital converter (ADC) from Microchip Technologies.
